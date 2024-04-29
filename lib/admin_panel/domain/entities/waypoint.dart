@@ -1,17 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import '../../core/building_object_type.dart';
+import 'package:istu_map_admin_panel/admin_panel/core/building_object_type.dart';
 
 class Waypoint extends Equatable {
-  final String id;
-  final String buildingId;
-  final String title;
-  final String? description;
-  final int floor;
-  final BuildingObjectType type;
-  final double x;
-  final double y;
-
   const Waypoint(
       {required this.id,
       required this.buildingId,
@@ -21,6 +12,15 @@ class Waypoint extends Equatable {
       required this.type,
       required this.x,
       required this.y});
+
+  final String id;
+  final String buildingId;
+  final String title;
+  final String? description;
+  final int floor;
+  final BuildingObjectType type;
+  final double x;
+  final double y;
 
   @override
   List<Object?> get props =>

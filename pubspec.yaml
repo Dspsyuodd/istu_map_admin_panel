@@ -8,14 +8,18 @@ environment:
 
 dependencies:
   build_runner: ^2.4.9
+  dartz: ^0.10.1
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  gap: ^3.0.1
   get_it: ^7.7.0
   http: ^1.2.1
+  internet_connection_checker_plus: ^2.3.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
+  very_good_analysis: ^5.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

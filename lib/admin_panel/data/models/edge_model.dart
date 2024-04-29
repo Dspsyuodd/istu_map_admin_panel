@@ -6,12 +6,13 @@ part 'edge_model.g.dart';
 
 @JsonSerializable()
 class EdgeModel extends Edge {
-  const EdgeModel(
-      {required super.from,
-      required super.to,
-      required super.id,
-      required super.buildingId,
-      required super.floorNumber});
+  const EdgeModel({
+    required super.from,
+    required super.to,
+    required super.id,
+    required super.buildingId,
+    required super.floorNumber,
+  });
 
   factory EdgeModel.fromJson(Map<String, dynamic> json) =>
       _$EdgeModelFromJson(json);
