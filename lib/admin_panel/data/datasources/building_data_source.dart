@@ -1,34 +1,52 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
+import 'dart:convert';
+
+import 'package:istu_map_admin_panel/admin_panel/constants/api_constants.dart';
+import 'package:istu_map_admin_panel/admin_panel/core/api_client.dart';
+import 'package:istu_map_admin_panel/admin_panel/data/models/building_model.dart';
 
 abstract interface class BuildingDataSource {
-  Future<String> create(Building object);
+  Future<String> create(Map<String, dynamic> object);
   Future<void> delete(String guid);
-  Future<Building> get(String guid);
-  Future<void> update(Building object);
+  Future<BuildingModel> get(String guid);
+  Future<List<BuildingModel>> getAll();
+  Future<void> update(Map<String, dynamic> object);
 }
 
 class BuildingDataSourceImpl implements BuildingDataSource {
+  final ApiClient client;
+
+  BuildingDataSourceImpl(this.client);
+
   @override
-  Future<String> create(Building object) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<String> create(Map<String, dynamic> object) async {
+    var result = (await client.post(ApiConstants.baseUrl + ApiConstants.buildings,
+            body: object));
+    return jsonDecode(result.body)["BuildingId"];
   }
 
   @override
-  Future<void> delete(String guid) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(String guid) async {
+    await client.delete(ApiConstants.baseUrl + ApiConstants.buildings + guid);
   }
 
   @override
-  Future<Building> get(String guid) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<BuildingModel> get(String guid) async {
+    var responce =
+        await client.get(ApiConstants.baseUrl + ApiConstants.buildings + guid);
+    return BuildingModel.fromJson(jsonDecode(responce.body));
   }
 
   @override
-  Future<void> update(Building object) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<List<BuildingModel>> getAll() async {
+    var responce =
+        await client.get(ApiConstants.baseUrl + ApiConstants.buildings);
+    return List<BuildingModel>.from(
+        jsonDecode(responce.body).map((x) => BuildingModel.fromJson(x)));
+  }
+
+  @override
+  Future<void> update(Map<String, dynamic> object) async {
+    await client.post(ApiConstants.baseUrl + ApiConstants.buildings + object['Id']!,
+        body: object);
   }
 }

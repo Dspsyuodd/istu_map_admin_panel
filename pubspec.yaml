@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   build_runner: ^2.4.9
+  collection: ^1.18.0
   dartz: ^0.10.1
   equatable: ^2.0.5
   flutter:
@@ -19,6 +20,7 @@ dependencies:
   internet_connection_checker_plus: ^2.3.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
+  loading_animation_widget: ^1.2.1
   very_good_analysis: ^5.1.0
 
 dev_dependencies:
@@ -28,3 +30,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/istu_logo_black.png
+    - assets/t9H6ZPGTNvc.jpg
+    - assets/qAeVbpUBew4.jpg
+    - assets/swmg.png

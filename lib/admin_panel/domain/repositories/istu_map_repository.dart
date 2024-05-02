@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/errors/failure.dart';
+import 'package:istu_map_admin_panel/core/errors/failure.dart';
 
 abstract interface class IstuMapRepository<Type> {
   Future<Either<Failure, Type>> get(String guid);

@@ -1,27 +1,35 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
+import 'dart:convert';
+
+import 'package:istu_map_admin_panel/admin_panel/constants/api_constants.dart';
+import 'package:istu_map_admin_panel/admin_panel/core/api_client.dart';
+import 'package:istu_map_admin_panel/admin_panel/data/models/waypoint_model.dart';
 
 abstract interface class WaypointDataSource {
-  Future<String> create(Waypoint object);
+  Future<String> create(WaypointModel object);
   Future<void> delete(String guid);
-  Future<Waypoint> get(String guid);
+  Future<WaypointModel> get(String guid);
 }
 
 class WaypointDataSourceImpl implements WaypointDataSource {
+  final ApiClient client;
+
+  WaypointDataSourceImpl(this.client);
+
   @override
-  Future<String> create(Waypoint object) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<String> create(WaypointModel object) async {
+    return (await client.post(ApiConstants.baseUrl + ApiConstants.waypoints,
+            body: object.toJson()))
+        .body;
   }
 
   @override
-  Future<void> delete(String guid) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(String guid) async {
+    await client.delete(ApiConstants.baseUrl + ApiConstants.waypoints + guid);
   }
 
   @override
-  Future<Waypoint> get(String guid) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<WaypointModel> get(String guid) async {
+    var responce = await client.get(ApiConstants.baseUrl + ApiConstants.waypoints + guid);
+    return WaypointModel.fromJson(jsonDecode(responce.body));
   }
 }

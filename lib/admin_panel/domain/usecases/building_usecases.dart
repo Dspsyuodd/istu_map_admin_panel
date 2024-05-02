@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/errors/failure.dart';
+import 'package:istu_map_admin_panel/core/errors/failure.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/repositories/repositories.dart';
 
@@ -18,6 +18,9 @@ class BuildingUseCases {
 
   Future<Either<Failure, Building>> get(String guid) async {
     return await repository.get(guid);
+  }
+  Future<Either<Failure, List<Building>>> getAll() async {
+    return await repository.getAll();
   }
 
   Future<Either<Failure, void>> update(Building object) async {

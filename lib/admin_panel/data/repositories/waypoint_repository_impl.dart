@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/errors/failure.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/network_info.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/server_error_handler.dart';
+import 'package:istu_map_admin_panel/admin_panel/data/models/waypoint_model.dart';
+import 'package:istu_map_admin_panel/core/errors/failure.dart';
+import 'package:istu_map_admin_panel/core/network_info.dart';
+import 'package:istu_map_admin_panel/core/server_error_handler.dart';
 import 'package:istu_map_admin_panel/admin_panel/data/datasources/waypoint_data_source.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/repositories/repositories.dart';
 
-class WaypointRepositoryImpl extends ServerExceptionsHandler
+class WaypointRepositoryImpl extends ExceptionsHandler
     implements WaypointRepository {
   final WaypointDataSource dataSource;
 
@@ -15,7 +16,7 @@ class WaypointRepositoryImpl extends ServerExceptionsHandler
 
   @override
   Future<Either<Failure, String>> create(Waypoint object) async {
-    return getEither(() => dataSource.create(object));
+    return getEither(() => dataSource.create(object as WaypointModel));
   }
 
   @override

@@ -1,34 +1,61 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
+import 'dart:convert';
+
+import 'package:istu_map_admin_panel/admin_panel/constants/api_constants.dart';
+import 'package:istu_map_admin_panel/admin_panel/core/api_client.dart';
+import 'package:istu_map_admin_panel/admin_panel/data/models/floor_model.dart';
 
 abstract interface class FloorDataSource {
-  Future<String> create(Floor object);
+  Future<String> create(String buildingId, Map<String, dynamic> object);
   Future<void> delete(String guid);
-  Future<Floor> get(String guid);
-  Future<String> update(Floor object);
+  Future<FloorModel> get(String guid);
+  Future<List<FloorModel>> getAll(String buildingId);
+  Future<void> update(String buildingId, Map<String, dynamic> object);
 }
 
 class FloorDataSourceImpl implements FloorDataSource {
+  final ApiClient client;
+
+  FloorDataSourceImpl(this.client);
   @override
-  Future<String> create(Floor object) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<String> create(String buildingId, Map<String, dynamic> object) async {
+    final responce = await client.post(
+        '${ApiConstants.baseUrl + ApiConstants.buildings}$buildingId/${ApiConstants.floors}',
+        body: object);
+    return jsonDecode(responce.body)["FloorId"];
   }
 
   @override
-  Future<void> delete(String guid) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(String guid) async {
+    await client.delete(ApiConstants.baseUrl +
+        ApiConstants.buildings +
+        ApiConstants.floors +
+        guid);
   }
 
   @override
-  Future<Floor> get(String guid) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<FloorModel> get(String guid) async {
+    final responce = await client.get(ApiConstants.baseUrl +
+        ApiConstants.buildings +
+        ApiConstants.floors +
+        guid);
+    return FloorModel.fromJson(jsonDecode(responce.body));
   }
 
   @override
-  Future<String> update(Floor object) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<List<FloorModel>> getAll(String buildingId) async {
+    final responce = await client.get(
+        '${ApiConstants.baseUrl}${ApiConstants.buildings}$buildingId/${ApiConstants.floors}');
+    return List<FloorModel>.from(
+      jsonDecode(responce.body).map(
+        (x) => FloorModel.fromJson(x),
+      ),
+    );
+  }
+
+  @override
+  Future<void> update(String buildingId, Map<String, dynamic> object) async {
+    await client.post(
+        '${ApiConstants.baseUrl + ApiConstants.buildings}${ApiConstants.floors}$buildingId/',
+        body: object);
   }
 }
