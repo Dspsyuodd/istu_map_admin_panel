@@ -15,7 +15,7 @@ class BuildingRepositoryImpl extends ExceptionsHandler
 
   @override
   Future<Either<Failure, String>> create(Building object) async {
-    return getEither(
+    return await getEither(
       () => dataSource.create(
         {
           "Title": object.title,
@@ -30,17 +30,17 @@ class BuildingRepositoryImpl extends ExceptionsHandler
 
   @override
   Future<Either<Failure, void>> delete(String guid) async {
-    return getEither(() => dataSource.delete(guid));
+    return await getEither(() => dataSource.delete(guid));
   }
 
   @override
   Future<Either<Failure, Building>> get(String guid) async {
-    return getEither(() => dataSource.get(guid));
+    return await getEither(() => dataSource.get(guid));
   }
 
   @override
   Future<Either<Failure, void>> update(Building object) async {
-    return getEither(() => dataSource.update(
+    return await getEither(() => dataSource.update(
           {
             "Id": object.id,
             "Title": object.title,
@@ -54,7 +54,7 @@ class BuildingRepositoryImpl extends ExceptionsHandler
 
   @override
   Future<Either<Failure, List<Building>>> getAll() async {
-    return getEither(
+    return await getEither(
       () => dataSource.getAll().then(
             (value) => value.map((e) => e as Building).toList(),
           ),

@@ -23,9 +23,7 @@ class GetBuildings extends AdminPanelEvent {}
 
 class GetFloors extends AdminPanelEvent {}
 
-class GetWaypoints extends AdminPanelEvent {}
 
-class GetEdges extends AdminPanelEvent {}
 
 class AddFloor extends AdminPanelEvent {
   final FloorInfo floorInfo;
@@ -33,22 +31,15 @@ class AddFloor extends AdminPanelEvent {
   const AddFloor(this.floorInfo);
 }
 
-class AddWaypoint extends AdminPanelEvent {}
-
-class AddEdge extends AdminPanelEvent {}
 
 class DeleteBuilding extends AdminPanelEvent {}
 
 class DeleteFloor extends AdminPanelEvent {}
 
-class DeleteWaypoint extends AdminPanelEvent {}
 
-class DeleteEdge extends AdminPanelEvent {}
 
 class UpdateBuilding extends AdminPanelEvent {}
 
 class UpdateFloor extends AdminPanelEvent {}
 
-class UpdateWaypoint extends AdminPanelEvent {}
 
-class UpdateEdge extends AdminPanelEvent {}

@@ -19,4 +19,22 @@ class EdgeUsecases {
   Future<Either<Failure, Edge>> get(String guid) async {
     return await repository.get(guid);
   }
+
+  Future<Either<Failure, List<Edge>>> getMany({
+    String? buildingid,
+    String? fromBuildingObjectId,
+    String? toBuildingObjectId,
+    int? floorNumber,
+    String? skip,
+    String? take,
+  }) async {
+    return await repository.getMany(
+      buildingid: buildingid,
+      fromBuildingObjectId: fromBuildingObjectId,
+      toBuildingObjectId: toBuildingObjectId,
+      floorNumber: floorNumber,
+      skip: skip,
+      take: take,
+    );
+  }
 }

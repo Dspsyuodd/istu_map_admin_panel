@@ -15,14 +15,16 @@ import 'package:istu_map_admin_panel/admin_panel/domain/usecases/building_usecas
 import 'package:istu_map_admin_panel/admin_panel/domain/usecases/edge_usecases.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/usecases/floor_usecases.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/usecases/waypoint_usecases.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/bloc/admin_panel_bloc_bloc.dart';
+import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
+import 'package:istu_map_admin_panel/admin_panel/ui/map_edit_bloc/map_edit_bloc.dart';
 import 'package:istu_map_admin_panel/core/network_info.dart';
 import 'package:http/http.dart' as http;
 
 final sl = GetIt.instance;
 
 Future<void> intiDependencies() async {
-  sl.registerFactory(() => AdminPanelBloc(sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => AdminPanelBloc(sl(), sl()));
+  sl.registerFactory(() => MapEditBloc(sl(), sl()));
 
   sl.registerLazySingleton(() => BuildingUseCases(sl()));
   sl.registerLazySingleton(() => FloorUsecases(sl()));

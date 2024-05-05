@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/admin_panel/data/models/waypoint_model.dart';
 import 'package:istu_map_admin_panel/core/errors/failure.dart';
 import 'package:istu_map_admin_panel/core/network_info.dart';
 import 'package:istu_map_admin_panel/core/server_error_handler.dart';
@@ -16,7 +15,18 @@ class WaypointRepositoryImpl extends ExceptionsHandler
 
   @override
   Future<Either<Failure, String>> create(Waypoint object) async {
-    return getEither(() => dataSource.create(object as WaypointModel));
+    return getEither(
+      () => dataSource.create(
+        {
+          "BuildingId": object.buildingId,
+          "Floor": object.floor,
+          "Type": object.type.index,
+          "Title": object.title,
+          "X": object.x,
+          "Y": object.y,
+        },
+      ),
+    );
   }
 
   @override
@@ -26,6 +36,7 @@ class WaypointRepositoryImpl extends ExceptionsHandler
 
   @override
   Future<Either<Failure, Waypoint>> get(String guid) async {
-    return getEither(() => dataSource.get(guid));
+    return getEither(
+        () => dataSource.get(guid).then((value) => value as Waypoint));
   }
 }

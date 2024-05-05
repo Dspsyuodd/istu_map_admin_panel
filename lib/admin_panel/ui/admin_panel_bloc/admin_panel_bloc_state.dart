@@ -14,15 +14,11 @@ final class Loading extends AdminPanelState {}
 final class Loaded extends AdminPanelState {
   final List<Building> buildings;
   final List<Floor> floors;
-  final List<Waypoint> waypoints;
-  final List<Edge> edges;
   final int? selectedBuildingIndex;
 
   const Loaded({
     required this.buildings,
     required this.floors,
-    required this.waypoints,
-    required this.edges,
     this.selectedBuildingIndex,
   });
 }

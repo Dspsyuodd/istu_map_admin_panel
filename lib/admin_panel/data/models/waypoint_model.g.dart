@@ -8,26 +8,26 @@ part of 'waypoint_model.dart';
 
 WaypointModel _$WaypointModelFromJson(Map<String, dynamic> json) =>
     WaypointModel(
-      id: json['id'] as String,
-      buildingId: json['buildingId'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String?,
-      floor: (json['floor'] as num).toInt(),
-      type: $enumDecode(_$BuildingObjectTypeEnumMap, json['type']),
-      x: (json['x'] as num).toDouble(),
-      y: (json['y'] as num).toDouble(),
+      id: json['Id'] as String,
+      buildingId: json['BuildingId'] as String,
+      title: json['Title'] as String,
+      description: json['Description'] as String?,
+      floor: (json['Floor'] as num).toInt(),
+      type: BuildingObjectType.values[json['Type'] as int],
+      x: (json['X'] as num).toDouble(),
+      y: (json['Y'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$WaypointModelToJson(WaypointModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'buildingId': instance.buildingId,
-      'title': instance.title,
-      'description': instance.description,
-      'floor': instance.floor,
-      'type': _$BuildingObjectTypeEnumMap[instance.type]!,
-      'x': instance.x,
-      'y': instance.y,
+      'Id': instance.id,
+      'BuildingId': instance.buildingId,
+      'Title': instance.title,
+      'Description': instance.description,
+      'Floor': instance.floor,
+      'Type': _$BuildingObjectTypeEnumMap[instance.type]!,
+      'X': instance.x,
+      'Y': instance.y,
     };
 
 const _$BuildingObjectTypeEnumMap = {

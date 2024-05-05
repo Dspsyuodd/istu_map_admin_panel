@@ -32,17 +32,18 @@ class FloorRepositoryImpl extends ExceptionsHandler implements FloorRepository {
 
   @override
   Future<Either<Failure, Floor>> get(String guid) async {
-    return getEither(() => dataSource.get(guid));
+    return getEither(() => dataSource.get(guid).then((value) => value as Floor));
   }
+
   @override
   Future<Either<Failure, List<Floor>>> getAll(String buildingId) async {
-    return getEither(() => dataSource.getAll(buildingId));
+    return getEither(() => dataSource
+        .getAll(buildingId)
+        .then((value) => value.map((e) => e as Floor).toList()));
   }
 
   @override
   Future<Either<Failure, void>> update(Floor floor) async {
-    return getEither(() => dataSource.update(floor.buildingId, {
-      
-    }));
+    return getEither(() => dataSource.update(floor.buildingId, {}));
   }
 }

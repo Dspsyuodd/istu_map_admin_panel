@@ -17,7 +17,16 @@ abstract interface class FloorRepository implements IstuMapRepository<Floor> {
   Future<Either<Failure, List<Floor>>> getAll(String buildngId);
 }
 
-abstract interface class EdgeRepository implements IstuMapRepository<Edge> {}
+abstract interface class EdgeRepository implements IstuMapRepository<Edge> {
+  Future<Either<Failure, List<Edge>>> getMany({
+    String? buildingid,
+    String? fromBuildingObjectId,
+    String? toBuildingObjectId,
+    int? floorNumber,
+    String? skip,
+    String? take,
+  });
+}
 
 abstract interface class WaypointRepository
     implements IstuMapRepository<Waypoint> {}

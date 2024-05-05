@@ -49,7 +49,7 @@ class ApiClientImpl implements ApiClient {
   @override
   Future<http.Response> delete(String url) async {
     var response = await client.delete(Uri.parse(url));
-    if (response.statusCode != 200) {
+    if (response.statusCode != 200 && response.statusCode != 202) {
       throw ServerException(response.body, response.statusCode);
     }
     return response;

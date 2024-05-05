@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:istu_map_admin_panel/admin_panel/ui/map_edit_bloc/map_edit_bloc.dart';
 
 class LeftPanel extends StatelessWidget {
   const LeftPanel({Key? key}) : super(key: key);
@@ -32,32 +32,9 @@ class LeftPanel extends StatelessWidget {
                 ],
                 color: Colors.blue,
               ),
-              child: ListView(
+              child: const Column(
                 children: [
-                  const Gap(20),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Маркер",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  const Gap(20),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Ребро",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  const Gap(20),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Удалить",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                  EditModeToggle(),
                 ],
               ),
             ),
@@ -70,6 +47,56 @@ class LeftPanel extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EditModeToggle extends StatefulWidget {
+  const EditModeToggle({Key? key}) : super(key: key);
+
+  @override
+  _EditModeToggleState createState() => _EditModeToggleState();
+}
+
+class _EditModeToggleState extends State<EditModeToggle> {
+  var isSelected = List.filled(MapEditMode.values.length, false);
+  void _select(int index) {
+    setState(() {
+      isSelected = List.filled(MapEditMode.values.length, false);
+      isSelected[index] = true;
+    });
+    BlocProvider.of<MapEditBloc>(context)
+        .add(ChangeEditMode(MapEditMode.values[index]));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _select(0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 200,
+      child: ToggleButtons(
+        selectedColor: Colors.white,
+        selectedBorderColor: Colors.white,
+        isSelected: isSelected,
+        onPressed: _select,
+        direction: Axis.vertical,
+        children: MapEditMode.values
+            .map(
+              (e) => Text(
+                e.name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            )
+            .toList(),
       ),
     );
   }
