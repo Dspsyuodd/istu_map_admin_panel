@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/building_object_type.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
 import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
