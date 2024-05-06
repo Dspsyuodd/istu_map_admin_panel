@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
-import 'package:istu_map_admin_panel/core/network_info.dart';
-import 'package:istu_map_admin_panel/core/server_error_handler.dart';
-import 'package:istu_map_admin_panel/admin_panel/data/datasources/waypoint_data_source.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/repositories/repositories.dart';
+import '../../../core/errors/failure.dart';
+import '../../../core/network_info.dart';
+import '../../../core/server_error_handler.dart';
+import '../datasources/waypoint_data_source.dart';
+import '../../domain/entities/waypoint.dart';
+import '../../domain/repositories/repositories.dart';
 
 class WaypointRepositoryImpl extends ExceptionsHandler
     implements WaypointRepository {

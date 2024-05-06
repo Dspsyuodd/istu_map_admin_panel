@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/core/errors/exceptions.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
-import 'package:istu_map_admin_panel/core/network_info.dart';
+import 'errors/exceptions.dart';
+import 'errors/failure.dart';
+import 'network_info.dart';
 
 abstract class ExceptionsHandler {
   final NetworkInfo networkInfo;

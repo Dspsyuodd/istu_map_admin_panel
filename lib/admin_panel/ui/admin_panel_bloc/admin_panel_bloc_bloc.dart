@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/usecases/building_usecases.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/usecases/floor_usecases.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
+import '../../domain/entities/building.dart';
+import '../../domain/entities/floor.dart';
+import '../../domain/usecases/building_usecases.dart';
+import '../../domain/usecases/floor_usecases.dart';
+import '../../../core/errors/failure.dart';
 
 part 'admin_panel_bloc_event.dart';
 part 'admin_panel_bloc_state.dart';

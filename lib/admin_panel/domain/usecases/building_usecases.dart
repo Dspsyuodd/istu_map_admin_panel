@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/repositories/repositories.dart';
+import '../../../core/errors/failure.dart';
+import '../entities/building.dart';
+import '../repositories/repositories.dart';
 
 class BuildingUseCases {
   final BuildingRepository repository;

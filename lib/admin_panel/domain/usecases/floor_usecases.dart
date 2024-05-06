@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/repositories/repositories.dart';
+import '../../../core/errors/failure.dart';
+import '../entities/floor.dart';
+import '../repositories/repositories.dart';
 
 class FloorUsecases {
   final FloorRepository repository;

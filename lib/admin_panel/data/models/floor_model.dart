@@ -1,5 +1,5 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/edge.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
+import '../../domain/entities/edge.dart';
+import '../../domain/entities/waypoint.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entities/floor.dart';

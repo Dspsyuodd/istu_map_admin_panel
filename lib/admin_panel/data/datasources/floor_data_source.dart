@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:istu_map_admin_panel/admin_panel/constants/api_constants.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/api_client.dart';
-import 'package:istu_map_admin_panel/admin_panel/data/models/floor_model.dart';
+import '../../constants/api_constants.dart';
+import '../../core/api_client.dart';
+import '../models/floor_model.dart';
 
 abstract interface class FloorDataSource {
   Future<String> create(String buildingId, Map<String, dynamic> object);

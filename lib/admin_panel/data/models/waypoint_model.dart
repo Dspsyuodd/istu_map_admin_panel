@@ -1,4 +1,4 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
+import '../../domain/entities/waypoint.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../core/building_object_type.dart';

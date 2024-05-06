@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
+import '../../domain/entities/building.dart';
 
 class BuildingCreateForm extends StatelessWidget {
   const BuildingCreateForm({Key? key}) : super(key: key);

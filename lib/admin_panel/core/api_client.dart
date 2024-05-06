@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -22,10 +21,7 @@ class ApiClientImpl implements ApiClient {
     var response = await client.get(
       Uri.parse(url),
     );
-    if (response.statusCode != 200) {
-      
-      throw ServerException(response.body, response.statusCode);
-    }
+    _handleErrors(response);
     return response;
   }
 
@@ -39,28 +35,31 @@ class ApiClientImpl implements ApiClient {
         "accept": "application/json",
       },
     );
-    if (response.statusCode != 200) {
-      log(response.body);
-      throw ServerException(response.body, response.statusCode);
-    }
+    _handleErrors(response);
     return response;
   }
 
   @override
   Future<http.Response> delete(String url) async {
     var response = await client.delete(Uri.parse(url));
-    if (response.statusCode != 200 && response.statusCode != 202) {
-      throw ServerException(response.body, response.statusCode);
-    }
+    _handleErrors(response);
     return response;
   }
 
   @override
   Future<http.Response> patch(String url, {Object? body}) async {
     var response = await client.patch(Uri.parse(url), body: body);
-    if (response.statusCode != 200) {
-      throw ServerException(response.body, response.statusCode);
-    }
+    _handleErrors(response);
     return response;
+  }
+
+  void _handleErrors(http.Response response) {
+    if (response.statusCode != 200 && response.statusCode != 202) {
+      throwException(response);
+    }
+  }
+
+  Never throwException(http.Response response) {
+    throw ServerException(response.body, response.statusCode);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/marker_redactor.dart';
+import '../admin_panel_bloc/admin_panel_bloc_bloc.dart';
+import 'marker_redactor.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class BuildingMap extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:istu_map_admin_panel/admin_panel/core/building_object_type.dart';
+import '../../core/building_object_type.dart';
 
 class Waypoint extends Equatable {
   const Waypoint(

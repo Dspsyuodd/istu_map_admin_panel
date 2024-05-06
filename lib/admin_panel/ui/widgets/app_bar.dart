@@ -5,10 +5,10 @@ import 'package:flutter/widgets.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/building_create_form.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/floor_create_form.dart';
+import '../../domain/entities/building.dart';
+import '../admin_panel_bloc/admin_panel_bloc_bloc.dart';
+import 'building_create_form.dart';
+import 'floor_create_form.dart';
 
 class AdminAppBar extends StatefulWidget implements PreferredSizeWidget {
   const AdminAppBar({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/building_object_type.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
+import '../../core/building_object_type.dart';
+import '../../domain/entities/waypoint.dart';
 
 class WaypointView extends StatefulWidget {
   const WaypointView({Key? key, required this.waypoint, this.color})
@@ -72,12 +72,3 @@ class _WaypointViewState extends State<WaypointView> {
     }
   }
 }
-
-// node._("Простая точка"),
-//   auditorium._("Аудитория"),
-//   cabinet._("Кабинет"),
-//   toilet._("Туалет"),
-//   cafe._("Кафе"),
-//   ladder._("Лестница"),
-//   elevator._("Лифт"),
-//   entrance._("Вход");

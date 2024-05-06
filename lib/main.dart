@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/pages/main_page.dart';
-import 'package:istu_map_admin_panel/admin_panel/injection_container.dart' as di;
+import 'admin_panel/ui/pages/main_page.dart';
+import 'admin_panel/injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

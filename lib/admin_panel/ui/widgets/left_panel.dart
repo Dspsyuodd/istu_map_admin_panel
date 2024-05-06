@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/map_edit_bloc/map_edit_bloc.dart';
+import '../map_edit_bloc/map_edit_bloc.dart';
 
 class LeftPanel extends StatelessWidget {
   const LeftPanel({Key? key}) : super(key: key);

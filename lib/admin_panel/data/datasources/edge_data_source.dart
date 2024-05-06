@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:istu_map_admin_panel/admin_panel/constants/api_constants.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/api_client.dart';
-import 'package:istu_map_admin_panel/admin_panel/data/models/edge_model.dart';
+import '../../constants/api_constants.dart';
+import '../../core/api_client.dart';
+import '../models/edge_model.dart';
 
 abstract interface class EdgeDataSource {
   Future<String> create(Map<String, dynamic> object);

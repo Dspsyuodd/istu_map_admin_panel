@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/map_edit_bloc/map_edit_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/wapoint_create_form.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/waypoint.dart';
+import '../../domain/entities/floor.dart';
+import '../../domain/entities/waypoint.dart';
+import '../admin_panel_bloc/admin_panel_bloc_bloc.dart';
+import '../map_edit_bloc/map_edit_bloc.dart';
+import 'wapoint_create_form.dart';
+import 'waypoint.dart';
 
 class MarkerRedactor extends StatefulWidget {
   const MarkerRedactor(

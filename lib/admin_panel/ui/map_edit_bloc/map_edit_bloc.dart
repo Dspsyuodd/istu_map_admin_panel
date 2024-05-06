@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/edge.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/floor.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/usecases/edge_usecases.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/usecases/waypoint_usecases.dart';
-import 'package:istu_map_admin_panel/core/errors/failure.dart';
+
+import '../../../core/errors/failure.dart';
+import '../../domain/entities/edge.dart';
+import '../../domain/entities/floor.dart';
+import '../../domain/entities/waypoint.dart';
+import '../../domain/usecases/edge_usecases.dart';
+import '../../domain/usecases/waypoint_usecases.dart';
 
 part 'map_edit_event.dart';
 part 'map_edit_state.dart';
@@ -70,7 +71,7 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
       if (event is DeleteWaypoint) {
         emit(MapLoading());
         var responce = await waypointUsecases.delete(event.waypoint.id);
-        
+
         await responce.fold(
           (l) async => _emitError(l, emit),
           (r) async {
@@ -134,10 +135,10 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
 enum MapEditMode {
   createObject._("Создать объект"),
   createEdge._("Создать ребро"),
-  deleteObject._("Удалить объект"),;
+  deleteObject._("Удалить объект"),
+  ;
 
   final String name;
 
   const MapEditMode._(this.name);
 }
-

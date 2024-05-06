@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:istu_map_admin_panel/admin_panel/core/building_object_type.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/waypoint.dart';
+import '../../core/building_object_type.dart';
+import '../../domain/entities/waypoint.dart';
 
 class WaypointCreateForm extends StatelessWidget {
   const WaypointCreateForm({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class WaypointCreateForm extends StatelessWidget {
     var description = '';
     var type = BuildingObjectType.node;
     return AlertDialog(
-      title: const Text('Создание здания'),
+      title: const Text('Создание объекта'),
       content: SizedBox(
         width: 400,
         child: Column(

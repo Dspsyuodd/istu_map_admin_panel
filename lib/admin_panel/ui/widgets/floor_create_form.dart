@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:gap/gap.dart';
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
+import '../../domain/entities/building.dart';
 
 class FloorCreateForm extends StatelessWidget {
   const FloorCreateForm({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class FloorCreateForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Создание здания'),
+      title: const Text('Создание этажа'),
       content: SizedBox(
         width: 400,
         child: Column(
@@ -30,6 +32,26 @@ class FloorCreateForm extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Floor number',
                 border: OutlineInputBorder(),
+              ),
+            ),
+            const Gap(20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 2),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+                
+              ),
+              width: 400,
+              height: 200,
+              child: Stack(
+                children: [
+                  DropzoneView(
+                    operation: DragOperation.copy,
+                    cursor: CursorType.grab,
+                    onDrop: (value) {},
+                  ),
+                  const Center(child: Text('Drop files here')),
+                ],
               ),
             ),
             const Gap(20),

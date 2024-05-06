@@ -1,4 +1,4 @@
-import 'package:istu_map_admin_panel/admin_panel/domain/entities/building.dart';
+import '../../domain/entities/building.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 

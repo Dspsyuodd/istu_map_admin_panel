@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:istu_map_admin_panel/admin_panel/injection_container.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/admin_panel_bloc/admin_panel_bloc_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/map_edit_bloc/map_edit_bloc.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/app_bar.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/builing_map.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/error_alert_dialog.dart';
-import 'package:istu_map_admin_panel/admin_panel/ui/widgets/left_panel.dart';
+import '../../injection_container.dart';
+import '../admin_panel_bloc/admin_panel_bloc_bloc.dart';
+import '../map_edit_bloc/map_edit_bloc.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/builing_map.dart';
+import '../widgets/error_alert_dialog.dart';
+import '../widgets/left_panel.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
