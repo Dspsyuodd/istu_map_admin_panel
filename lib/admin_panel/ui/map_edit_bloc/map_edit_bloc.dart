@@ -18,7 +18,8 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
   final EdgeUsecases _edgeUsecases;
   var _floors = <Floor>[];
   var _mode = MapEditMode.createObject;
-
+  Waypoint? _betweenFloorWaypoint;
+  
   MapEditBloc(this._waypointUsecases, this._edgeUsecases)
       : super(MapEditInitial()) {
     on<MapEditEvent>((event, emit) async {
@@ -92,6 +93,27 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
           },
         );
       }
+
+      if (event is AddEdgeBetweenFloor) {
+        if (_betweenFloorWaypoint == null) {
+          _betweenFloorWaypoint = event.waypoint;
+        } else {
+          emit(MapLoading());
+          var edge = Edge(
+              id: '',
+              fromId: _betweenFloorWaypoint!.id,
+              toId: event.waypoint.id);
+          var result = await _edgeUsecases.create(edge);
+          result.fold(
+            (l) => _emitError(l, emit),
+            (r) {
+              emit(MapLoaded(
+                  _floors.map((e) => floorToMapData(e)).toList(), _mode));
+              _betweenFloorWaypoint = null;
+            },
+          );
+        }
+      }
     });
   }
 
@@ -135,7 +157,8 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
 enum MapEditMode {
   createObject._("Создать объект"),
   createEdge._("Создать ребро"),
-  deleteObject._("Удалить объект");
+  deleteObject._("Удалить объект"),
+  betweenFloors._("Ребро между этажами");
 
   final String name;
 

@@ -33,10 +33,7 @@ class _AdminAppBarState extends State<AdminAppBar> {
       decoration: const BoxDecoration(
         color: Color.fromRGBO(73, 83, 131, 1),
         boxShadow: [
-          BoxShadow(
-              color: Colors.black,
-              blurRadius: 5,
-              spreadRadius: 2),
+          BoxShadow(color: Colors.black, blurRadius: 5, spreadRadius: 2),
         ],
       ),
       height: double.infinity,

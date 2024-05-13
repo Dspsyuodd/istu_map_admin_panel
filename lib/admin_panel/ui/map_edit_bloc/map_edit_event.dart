@@ -43,6 +43,11 @@ class DeleteWaypoint extends MapEditEvent {
   const DeleteWaypoint(this.waypoint);
 }
 
+class AddEdgeBetweenFloor extends MapEditEvent {
+  final Waypoint waypoint;
+  const AddEdgeBetweenFloor(this.waypoint);
+}
+
 class DeleteEdge extends MapEditEvent {}
 
 class UpdateWaypoint extends MapEditEvent {}

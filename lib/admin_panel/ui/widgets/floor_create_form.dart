@@ -34,7 +34,9 @@ class FloorCreateForm extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
+            
             const Gap(20),
+            
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 2),

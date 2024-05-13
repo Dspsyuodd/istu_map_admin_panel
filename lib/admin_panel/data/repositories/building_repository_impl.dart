@@ -23,6 +23,7 @@ class BuildingRepositoryImpl extends ExceptionsHandler
           if (object.description != null) "Description": object.description!,
           "Latitude": object.latitude.toString(),
           "Longitude": object.longitude.toString(),
+          if (object.keywords != null) "Keywords": object.keywords,
         },
       ),
     );

@@ -11,6 +11,7 @@ class WaypointCreateForm extends StatelessWidget {
     var title = '';
     var description = '';
     var type = BuildingObjectType.node;
+    String? keywords;
     return AlertDialog(
       title: const Text('Создание объекта'),
       content: SizedBox(
@@ -57,6 +58,18 @@ class WaypointCreateForm extends StatelessWidget {
                   .toList(),
             ),
             const Gap(20),
+            TextField(
+              onChanged: (value) {
+                keywords = value;
+              },
+              minLines: 1,
+              maxLines: 5,
+              decoration: const InputDecoration(
+                labelText: 'Ключевые слова (через пробед без запятых)',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const Gap(20),
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
@@ -74,6 +87,7 @@ class WaypointCreateForm extends StatelessWidget {
                       type: type,
                       x: 0,
                       y: 0,
+                      keywords: keywords,
                     ),
                   );
                 },

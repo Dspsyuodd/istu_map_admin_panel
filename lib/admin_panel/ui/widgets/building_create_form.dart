@@ -11,6 +11,7 @@ class BuildingCreateForm extends StatelessWidget {
     var title = '';
     var address = '';
     var description = '';
+    String? keywords;
     double? latitude;
     double? longtitude;
     return AlertDialog(
@@ -88,6 +89,18 @@ class BuildingCreateForm extends StatelessWidget {
               ),
             ),
             const Gap(20),
+            TextField(
+              onChanged: (value) {
+                keywords = value;
+              },
+              minLines: 1,
+              maxLines: 5,
+              decoration: const InputDecoration(
+                labelText: 'Ключевые слова (через пробед без запятых)',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const Gap(20),
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
@@ -105,6 +118,7 @@ class BuildingCreateForm extends StatelessWidget {
                         address: address,
                         latitude: latitude!,
                         longitude: longtitude!,
+                        keywords: keywords,
                       ),
                     );
                   }

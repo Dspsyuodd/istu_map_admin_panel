@@ -24,6 +24,7 @@ class WaypointRepositoryImpl extends ExceptionsHandler
           "Title": object.title,
           "X": object.x,
           "Y": object.y,
+          if (object.keywords != null) "Keywords": object.keywords,
         },
       ),
     );

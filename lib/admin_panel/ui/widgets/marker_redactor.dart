@@ -113,6 +113,9 @@ class _MarkerRedactorState extends State<MarkerRedactor> {
                                       BlocProvider.of<MapEditBloc>(context)
                                           .add(DeleteWaypoint(e));
                                     }
+                                    if (state.editMode == MapEditMode.betweenFloors) {
+                                      BlocProvider.of<MapEditBloc>(context).add(AddEdgeBetweenFloor(e));
+                                    }
                                   },
                                   behavior: HitTestBehavior.translucent,
                                   child: WaypointView(

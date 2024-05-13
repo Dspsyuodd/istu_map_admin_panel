@@ -9,6 +9,7 @@ class Building extends Equatable {
   final String address;
   final double latitude;
   final double longitude;
+  final String? keywords;
   
   
 
@@ -20,6 +21,7 @@ class Building extends Equatable {
     required this.address,
     required this.latitude,
     required this.longitude,
+    this.keywords,
   });
 
   @override
