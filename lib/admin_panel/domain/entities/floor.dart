@@ -8,7 +8,7 @@ class Floor extends Equatable {
   final int floorNumber;
   final List<Waypoint> waypoints;
   final List<Edge> edges;
-  final String imageLink;
+  final String? imageLink;
 
   const Floor(
       {required this.buildingId,

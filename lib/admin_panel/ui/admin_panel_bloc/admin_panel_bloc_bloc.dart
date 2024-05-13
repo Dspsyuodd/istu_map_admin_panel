@@ -43,7 +43,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       floorNumber: buildings[selectedBuilding!].floors.length + 1,
       waypoints: List.empty(growable: true),
       edges: List.empty(growable: true),
-      imageLink: event.floorInfo.imageLink,
+      imageLink: event.floorInfo.imageLink ?? '',
     );
     var result = await floorUseCases.create(floor);
     buildings[selectedBuilding!].floors.add(FloorInfo(

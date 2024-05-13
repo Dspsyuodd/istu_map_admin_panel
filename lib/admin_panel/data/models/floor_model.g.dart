@@ -16,7 +16,7 @@ FloorModel _$FloorModelFromJson(Map<String, dynamic> json) => FloorModel(
       edges: (json['Edges'] as List<dynamic>)
           .map((e) => EdgeModel.fromJson(e as Map<String, dynamic>) as Edge)
           .toList(),
-      imageLink: json['ImageLink'] as String,
+      imageLink: json['ImageLink'] as String?,
     );
 
 Map<String, dynamic> _$FloorModelToJson(FloorModel instance) =>

@@ -33,7 +33,7 @@ Map<String, dynamic> _$BuildingModelToJson(BuildingModel instance) =>
 FloorInfoModel _$FloorInfoModelFromJson(Map<String, dynamic> json) =>
     FloorInfoModel(
       floorNumber: (json['FloorNumber'] as num).toInt(),
-      imageLink: json['ImageLink'] as String,
+      imageLink: json['ImageLink'] as String?,
     );
 
 Map<String, dynamic> _$FloorInfoModelToJson(FloorInfoModel instance) =>

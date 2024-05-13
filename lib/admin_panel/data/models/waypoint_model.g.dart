@@ -10,7 +10,7 @@ WaypointModel _$WaypointModelFromJson(Map<String, dynamic> json) =>
     WaypointModel(
       id: json['Id'] as String,
       buildingId: json['BuildingId'] as String,
-      title: json['Title'] as String,
+      title: json['Title'] as String?,
       description: json['Description'] as String?,
       floor: (json['Floor'] as num).toInt(),
       type: BuildingObjectType.values[json['Type'] as int],

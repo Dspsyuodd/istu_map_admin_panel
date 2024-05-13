@@ -15,7 +15,7 @@ class Waypoint extends Equatable {
 
   final String id;
   final String buildingId;
-  final String title;
+  final String? title;
   final String? description;
   final int floor;
   final BuildingObjectType type;

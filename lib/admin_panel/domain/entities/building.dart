@@ -28,9 +28,9 @@ class Building extends Equatable {
 
 class FloorInfo extends Equatable {
   final int floorNumber;
-  final String imageLink;
+  final String? imageLink;
 
-  const FloorInfo({required this.floorNumber, required this.imageLink});
+  const FloorInfo({required this.floorNumber, this.imageLink});
   
   @override
   List<Object?> get props => [floorNumber, imageLink];

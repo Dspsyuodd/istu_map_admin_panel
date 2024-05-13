@@ -78,9 +78,27 @@ class _BuildingMapState extends State<BuildingMap> {
                           return Column(
                             children: state.floors
                                 .map(
-                                  (e) => MarkerRedactor(
-                                    floorImage: Image.asset('t9H6ZPGTNvc.jpg'),
-                                    floor: e,
+                                  (e) => Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      MarkerRedactor(
+                                        floorImage:
+                                            Image.asset('t9H6ZPGTNvc.jpg'),
+                                        floor: e,
+                                      ),
+                                      IconButton(
+                                        color: Colors.green,
+                                        iconSize: 50,
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.settings),
+                                      ),
+                                      IconButton(
+                                        color: Colors.red,
+                                        iconSize: 50,
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.delete),
+                                      ),
+                                    ],
                                   ),
                                 )
                                 .toList(),

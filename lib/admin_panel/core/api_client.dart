@@ -54,7 +54,7 @@ class ApiClientImpl implements ApiClient {
   }
 
   void _handleErrors(http.Response response) {
-    if (response.statusCode != 200 && response.statusCode != 202) {
+    if (response.statusCode ~/ 100 != 2) {
       throwException(response);
     }
   }

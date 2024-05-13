@@ -59,6 +59,9 @@ class _AdminAppBarState extends State<AdminAppBar> {
                 builder: (context, state) {
                   if (state is Loaded) {
                     return DropdownMenu(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                      ),
                       initialSelection: state.selectedBuildingIndex,
                       onSelected: (value) {
                         if (value == null) return;

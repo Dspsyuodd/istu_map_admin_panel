@@ -14,12 +14,12 @@ part 'map_edit_event.dart';
 part 'map_edit_state.dart';
 
 class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
-  final WaypointUsecases waypointUsecases;
-  final EdgeUsecases edgeUsecases;
+  final WaypointUsecases _waypointUsecases;
+  final EdgeUsecases _edgeUsecases;
   var _floors = <Floor>[];
   var _mode = MapEditMode.createObject;
 
-  MapEditBloc(this.waypointUsecases, this.edgeUsecases)
+  MapEditBloc(this._waypointUsecases, this._edgeUsecases)
       : super(MapEditInitial()) {
     on<MapEditEvent>((event, emit) async {
       print(event.runtimeType);
@@ -30,7 +30,7 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
       }
       if (event is AddWaypoint) {
         emit(MapLoading());
-        var result = await waypointUsecases.create(event.waypoint);
+        var result = await _waypointUsecases.create(event.waypoint);
         result.fold((l) => _emitError(l, emit), (r) {
           _floors[event.waypoint.floor - 1].waypoints.add(
                 Waypoint(
@@ -57,7 +57,7 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
       if (event is AddEdge) {
         emit(MapLoading());
         var edge = Edge(id: '', fromId: event.fromId, toId: event.toId);
-        var result = await edgeUsecases.create(edge);
+        var result = await _edgeUsecases.create(edge);
         result.fold(
           (l) => _emitError(l, emit),
           (r) {
@@ -70,12 +70,12 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
 
       if (event is DeleteWaypoint) {
         emit(MapLoading());
-        var responce = await waypointUsecases.delete(event.waypoint.id);
+        var responce = await _waypointUsecases.delete(event.waypoint.id);
 
         await responce.fold(
           (l) async => _emitError(l, emit),
           (r) async {
-            var edgesEither = await edgeUsecases.getMany(
+            var edgesEither = await _edgeUsecases.getMany(
               buildingid: event.waypoint.buildingId,
               floorNumber: event.waypoint.floor,
             );
@@ -135,8 +135,7 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
 enum MapEditMode {
   createObject._("Создать объект"),
   createEdge._("Создать ребро"),
-  deleteObject._("Удалить объект"),
-  ;
+  deleteObject._("Удалить объект");
 
   final String name;
 
