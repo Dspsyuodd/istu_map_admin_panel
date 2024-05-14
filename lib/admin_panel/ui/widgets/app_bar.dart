@@ -87,14 +87,15 @@ class _AdminAppBarState extends State<AdminAppBar> {
                       visible: state.selectedBuildingIndex != null,
                       child: ElevatedButton(
                         onPressed: () async {
-                          var floor = await showDialog<FloorInfo>(
+                          var result = await showDialog<(FloorInfo, dynamic)>(
                             context: context,
                             builder: (context) => const FloorCreateForm(),
                           );
-                          if (!mounted || floor == null) return;
+                          if (!mounted || result == null) return;
                           BlocProvider.of<AdminPanelBloc>(context).add(
                             AddFloor(
-                              floor,
+                              result.$1,
+                              result.$2,
                             ),
                           );
                         },

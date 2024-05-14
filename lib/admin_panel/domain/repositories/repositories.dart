@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import '../../../core/errors/failure.dart';
 import '../entities/building.dart';
 import '../entities/edge.dart';
@@ -15,6 +18,12 @@ abstract interface class BuildingRepository
 abstract interface class FloorRepository implements IstuMapRepository<Floor> {
   Future<Either<Failure, void>> update(Floor floor);
   Future<Either<Failure, List<Floor>>> getAll(String buildngId);
+}
+
+abstract interface class ImageRepository {
+  Future<Either<Failure, String>> addImage(String objectId, File image);
+  Future<Either<Failure, Image>> getImage(String imageId);
+  Future<Either<Failure, List<String>>> getImageByObjectId(String objectId);
 }
 
 abstract interface class EdgeRepository implements IstuMapRepository<Edge> {

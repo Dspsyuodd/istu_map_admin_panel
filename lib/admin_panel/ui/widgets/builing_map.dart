@@ -79,10 +79,11 @@ class _BuildingMapState extends State<BuildingMap> {
                             children: state.floors
                                 .map(
                                   (e) => Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       MarkerRedactor(
-                                        floorImage:
+                                        floorImage: e.image ??
                                             Image.asset('t9H6ZPGTNvc.jpg'),
                                         floor: e,
                                       ),

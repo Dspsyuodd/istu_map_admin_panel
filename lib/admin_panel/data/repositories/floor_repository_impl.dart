@@ -18,7 +18,6 @@ class FloorRepositoryImpl extends ExceptionsHandler implements FloorRepository {
       () => dataSource.create(
         object.buildingId,
         {
-          "ImageLink": object.imageLink,
           "FloorNumber": object.floorNumber,
         },
       ),
@@ -26,13 +25,15 @@ class FloorRepositoryImpl extends ExceptionsHandler implements FloorRepository {
   }
 
   @override
-  Future<Either<Failure, void>> delete(String guid) async {
-    return getEither(() => dataSource.delete(guid));
+  Future<Either<Failure, void>> delete(floor) async {
+    return getEither(
+        () => dataSource.delete(floor.buildingId, floor.floorNumber));
   }
 
   @override
   Future<Either<Failure, Floor>> get(String guid) async {
-    return getEither(() => dataSource.get(guid).then((value) => value as Floor));
+    return getEither(
+        () => dataSource.get(guid).then((value) => value as Floor));
   }
 
   @override

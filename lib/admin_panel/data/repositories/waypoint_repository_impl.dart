@@ -31,8 +31,8 @@ class WaypointRepositoryImpl extends ExceptionsHandler
   }
 
   @override
-  Future<Either<Failure, void>> delete(String guid) async {
-    return getEither(() => dataSource.delete(guid));
+  Future<Either<Failure, void>> delete(waypoint) async {
+    return getEither(() => dataSource.delete(waypoint.id));
   }
 
   @override

@@ -29,8 +29,8 @@ class EdgeRepositoryImpl extends ExceptionsHandler implements EdgeRepository {
   }
 
   @override
-  Future<Either<Failure, void>> delete(String guid) async {
-    return await getEither(() => dataSource.delete(guid));
+  Future<Either<Failure, void>> delete(edge) async {
+    return await getEither(() => dataSource.delete(edge.id));
   }
 
   @override

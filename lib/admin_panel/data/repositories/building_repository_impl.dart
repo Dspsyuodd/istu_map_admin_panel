@@ -30,8 +30,8 @@ class BuildingRepositoryImpl extends ExceptionsHandler
   }
 
   @override
-  Future<Either<Failure, void>> delete(String guid) async {
-    return await getEither(() => dataSource.delete(guid));
+  Future<Either<Failure, void>> delete(building) async {
+    return await getEither(() => dataSource.delete(building.id));
   }
 
   @override

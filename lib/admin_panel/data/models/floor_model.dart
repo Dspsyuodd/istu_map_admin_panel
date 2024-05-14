@@ -10,14 +10,16 @@ part 'floor_model.g.dart';
 
 @JsonSerializable()
 class FloorModel extends Floor {
-  const FloorModel(
-      {required super.buildingId,
-      required super.floorNumber,
-      required super.waypoints,
-      required super.edges,
-      required super.imageLink});
+  const FloorModel({
+    required super.id,
+    required super.buildingId,
+    required super.floorNumber,
+    required super.waypoints,
+    required super.edges,
+  });
 
-  factory FloorModel.fromJson(Map<String, dynamic> json) => _$FloorModelFromJson(json);
+  factory FloorModel.fromJson(Map<String, dynamic> json) =>
+      _$FloorModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$FloorModelToJson(this);
 }

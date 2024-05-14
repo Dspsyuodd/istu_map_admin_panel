@@ -12,8 +12,8 @@ class BuildingUseCases {
     return await repository.create(object);
   }
 
-  Future<Either<Failure, void>> delete(String guid) async {
-    return await repository.delete(guid);
+  Future<Either<Failure, void>> delete(Building building) async {
+    return await repository.delete(building);
   }
 
   Future<Either<Failure, Building>> get(String guid) async {

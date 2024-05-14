@@ -1,12 +1,20 @@
-import 'package:flutter/foundation.dart';
+import 'dart:html';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:gap/gap.dart';
 import '../../domain/entities/building.dart';
 
-class FloorCreateForm extends StatelessWidget {
+class FloorCreateForm extends StatefulWidget {
   const FloorCreateForm({Key? key}) : super(key: key);
+
+  @override
+  State<FloorCreateForm> createState() => _FloorCreateFormState();
+}
+
+class _FloorCreateFormState extends State<FloorCreateForm> {
+  var dropMessage = 'Drop files here';
+  File? image;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +27,6 @@ class FloorCreateForm extends StatelessWidget {
           children: [
             TextField(
               onChanged: (value) {},
-              decoration: const InputDecoration(
-                labelText: 'Image link',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const Gap(20),
-            TextField(
-              onChanged: (value) {},
               minLines: 1,
               maxLines: 5,
               decoration: const InputDecoration(
@@ -34,14 +34,11 @@ class FloorCreateForm extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            
             const Gap(20),
-            
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 2),
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                
               ),
               width: 400,
               height: 200,
@@ -50,9 +47,14 @@ class FloorCreateForm extends StatelessWidget {
                   DropzoneView(
                     operation: DragOperation.copy,
                     cursor: CursorType.grab,
-                    onDrop: (value) {},
+                    onDrop: (value) {
+                      image = value as File;
+                      setState(() {
+                        dropMessage = image!.name;
+                      });
+                    },
                   ),
-                  const Center(child: Text('Drop files here')),
+                  Center(child: Text(dropMessage)),
                 ],
               ),
             ),
@@ -65,8 +67,7 @@ class FloorCreateForm extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.of(context).pop(
-                    const FloorInfo(floorNumber: 0, imageLink: 'imageLink'),
-                  );
+                      (const FloorInfo(floorNumber: 0, floorId: ''), image));
                 },
                 child: const Text(
                   "Готово",

@@ -39,25 +39,32 @@ class MainPage extends StatelessWidget {
                 if (state is MapServerError) {
                   WidgetsBinding.instance.addPostFrameCallback(
                     (_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          duration: const Duration(seconds: 5),
-                          content: Column(
-                            children: [
-                              SelectableText(
-                                "ERROR: ${state.code}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const Gap(20),
-                              SelectableText(state.message,
-                                  style: const TextStyle(color: Colors.white)),
-                            ],
-                          ),
+                      showDialog(
+                        context: context,
+                        builder: (_) => ErrorAlertDialog(
+                          message: state.code,
+                          stackTrace: state.message,
                         ),
                       );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     duration: const Duration(seconds: 15),
+                      //     content: Column(
+                      //       children: [
+                      //         SelectableText(
+                      //           "ERROR: ${state.code}",
+                      //           style: const TextStyle(
+                      //             color: Colors.white,
+                      //             fontSize: 20,
+                      //           ),
+                      //         ),
+                      //         const Gap(20),
+                      //         SelectableText(state.message,
+                      //             style: const TextStyle(color: Colors.white)),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // );
                     },
                   );
                 }
@@ -88,25 +95,32 @@ class MainPage extends StatelessWidget {
                 if (state is ServerError) {
                   WidgetsBinding.instance.addPostFrameCallback(
                     (_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          duration: const Duration(seconds: 5),
-                          content: Column(
-                            children: [
-                              SelectableText(
-                                "ERROR: ${state.code}",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const Gap(20),
-                              SelectableText(state.message,
-                                  style: const TextStyle(color: Colors.white)),
-                            ],
-                          ),
+                      showDialog(
+                        context: context,
+                        builder: (_) => ErrorAlertDialog(
+                          message: state.code,
+                          stackTrace: state.message,
                         ),
                       );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     duration: const Duration(seconds: 5),
+                      //     content: Column(
+                      //       children: [
+                      //         SelectableText(
+                      //           "ERROR: ${state.code}",
+                      //           style: const TextStyle(
+                      //             color: Colors.white,
+                      //             fontSize: 20,
+                      //           ),
+                      //         ),
+                      //         const Gap(20),
+                      //         SelectableText(state.message,
+                      //             style: const TextStyle(color: Colors.white)),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // );
                     },
                   );
                 }

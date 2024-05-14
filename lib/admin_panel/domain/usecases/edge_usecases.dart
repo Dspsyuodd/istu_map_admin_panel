@@ -12,8 +12,8 @@ class EdgeUsecases {
     return await repository.create(object);
   }
 
-  Future<Either<Failure, void>> delete(String guid) async {
-    return await repository.delete(guid);
+  Future<Either<Failure, void>> delete(Edge edge) async {
+    return await repository.delete(edge);
   }
 
   Future<Either<Failure, Edge>> get(String guid) async {

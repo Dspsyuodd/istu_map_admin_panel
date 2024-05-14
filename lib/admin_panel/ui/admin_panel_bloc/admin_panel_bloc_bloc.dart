@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:istu_map_admin_panel/admin_panel/domain/usecases/image_usecases.dart';
 import '../../domain/entities/building.dart';
 import '../../domain/entities/floor.dart';
 import '../../domain/usecases/building_usecases.dart';
@@ -14,11 +16,13 @@ part 'admin_panel_bloc_state.dart';
 class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
   final BuildingUseCases buildingUseCases;
   final FloorUsecases floorUseCases;
+  final ImageUsecases imageUsecases;
   var buildings = <Building>[];
   var floors = <Floor>[];
   int? selectedBuilding;
 
-  AdminPanelBloc(this.buildingUseCases, this.floorUseCases) : super(Empty()) {
+  AdminPanelBloc(this.buildingUseCases, this.floorUseCases, this.imageUsecases)
+      : super(Empty()) {
     on<AdminPanelEvent>((event, emit) async {
       log(event.runtimeType.toString());
       if (event is AddBuilding) {
@@ -33,27 +37,70 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       if (event is AddFloor && selectedBuilding != null) {
         await _addFloor(emit, event);
       }
+      if (event is DeleteFloor) {
+        var result = await floorUseCases.delete(event.floor);
+        result.fold(
+          (l) => _emitError(l, emit),
+          (r) {
+            floors.removeWhere(
+              (element) => element.id == event.floor.id,
+            );
+            emit(
+              Loaded(
+                selectedBuildingIndex: selectedBuilding,
+                buildings: buildings,
+                floors: floors,
+              ),
+            );
+          },
+        );
+      }
     });
   }
 
   Future<void> _addFloor(Emitter<AdminPanelState> emit, AddFloor event) async {
     emit(Loading());
     var floor = Floor(
+      id: event.floorInfo.floorId,
       buildingId: buildings[selectedBuilding!].id,
       floorNumber: buildings[selectedBuilding!].floors.length + 1,
       waypoints: List.empty(growable: true),
       edges: List.empty(growable: true),
-      imageLink: event.floorInfo.imageLink ?? '',
     );
-    var result = await floorUseCases.create(floor);
-    buildings[selectedBuilding!].floors.add(FloorInfo(
-          floorNumber: buildings[selectedBuilding!].floors.length + 1,
-          imageLink: event.floorInfo.imageLink,
-        ));
-    result.fold(
+    var result = await floorUseCases.create(floor, event.image);
+    buildings[selectedBuilding!].floors.add(
+          FloorInfo(
+            floorNumber: buildings[selectedBuilding!].floors.length + 1,
+            floorId: event.floorInfo.floorId,
+          ),
+        );
+    String? imageId;
+    Image? image;
+    await result.$2?.fold(
+      (l) async => _emitError(l, emit),
+      (r) async {
+        imageId = r;
+        var imageRes = await imageUsecases.getImage(imageId!);
+        imageRes.fold(
+          (l) => _emitError(l, emit),
+          (r) => image = r,
+        );
+      },
+    );
+    result.$1.fold(
       (l) => _emitError(l, emit),
       (r) {
-        floors.add(floor);
+        floors.add(
+          Floor(
+            id: r,
+            buildingId: floor.buildingId,
+            floorNumber: floor.floorNumber,
+            waypoints: floor.waypoints,
+            edges: floor.edges,
+            imageId: imageId,
+            image: image,
+          ),
+        );
         emit(
           Loaded(
             selectedBuildingIndex: selectedBuilding,
@@ -71,10 +118,29 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     selectedBuilding = event.index;
 
     var result = await floorUseCases.getAll(buildings[selectedBuilding!].id);
-    result.fold(
-      (l) => _emitError(l, emit),
-      (r) {
-        floors = r;
+    await result.fold(
+      (l) async => _emitError(l, emit),
+      (r) async {
+        floors = [];
+        for (var floor in r) {
+          var imageRes = await imageUsecases.getImageByObjectId(floor.id);
+          Image? image;
+          imageRes.fold(
+            (l2) => _emitError(l2, emit),
+            (r2) {
+              image = r2.firstOrNull;
+            },
+          );
+          floors.add(Floor(
+            id: floor.id,
+            buildingId: floor.buildingId,
+            floorNumber: floor.floorNumber,
+            waypoints: floor.waypoints,
+            edges: floor.edges,
+            imageId: floor.imageId,
+            image: image,
+          ));
+        }
       },
     );
 

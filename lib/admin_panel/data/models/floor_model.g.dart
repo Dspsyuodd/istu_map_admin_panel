@@ -7,6 +7,7 @@ part of 'floor_model.dart';
 // **************************************************************************
 
 FloorModel _$FloorModelFromJson(Map<String, dynamic> json) => FloorModel(
+      id: json['FloorId'] as String,
       buildingId: json['BuildingId'] as String,
       floorNumber: (json['FloorNumber'] as num).toInt(),
       waypoints: (json['Objects'] as List<dynamic>)
@@ -16,14 +17,13 @@ FloorModel _$FloorModelFromJson(Map<String, dynamic> json) => FloorModel(
       edges: (json['Edges'] as List<dynamic>)
           .map((e) => EdgeModel.fromJson(e as Map<String, dynamic>) as Edge)
           .toList(),
-      imageLink: json['ImageLink'] as String?,
     );
 
 Map<String, dynamic> _$FloorModelToJson(FloorModel instance) =>
     <String, dynamic>{
+      'Id': instance.id,
       'BuildingId': instance.buildingId,
       'FloorNumber': instance.floorNumber,
       'Objects': instance.waypoints,
       'Edges': instance.edges,
-      'ImageLink': instance.imageLink,
     };

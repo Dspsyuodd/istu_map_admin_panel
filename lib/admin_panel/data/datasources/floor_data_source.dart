@@ -6,7 +6,7 @@ import '../models/floor_model.dart';
 
 abstract interface class FloorDataSource {
   Future<String> create(String buildingId, Map<String, dynamic> object);
-  Future<void> delete(String guid);
+  Future<void> delete(String buildingId, int floorNumber);
   Future<FloorModel> get(String guid);
   Future<List<FloorModel>> getAll(String buildingId);
   Future<void> update(String buildingId, Map<String, dynamic> object);
@@ -25,11 +25,14 @@ class FloorDataSourceImpl implements FloorDataSource {
   }
 
   @override
-  Future<void> delete(String guid) async {
-    await client.delete(ApiConstants.baseUrl +
-        ApiConstants.buildings +
-        ApiConstants.floors +
-        guid);
+  Future<void> delete(buildingId, floorNumber) async {
+    await client.delete(
+      ApiConstants.baseUrl +
+          ApiConstants.buildings +
+          buildingId +
+          ApiConstants.floors +
+          floorNumber.toString(),
+    );
   }
 
   @override

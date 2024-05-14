@@ -71,7 +71,7 @@ class MapEditBloc extends Bloc<MapEditEvent, MapEditState> {
 
       if (event is DeleteWaypoint) {
         emit(MapLoading());
-        var responce = await _waypointUsecases.delete(event.waypoint.id);
+        var responce = await _waypointUsecases.delete(event.waypoint);
 
         await responce.fold(
           (l) async => _emitError(l, emit),

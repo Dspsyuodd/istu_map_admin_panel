@@ -24,7 +24,7 @@ class BuildingModel extends Building {
 
 @JsonSerializable()
 class FloorInfoModel extends FloorInfo {
-  const FloorInfoModel({required super.floorNumber, required super.imageLink});
+  const FloorInfoModel({required super.floorNumber, required super.floorId});
   factory FloorInfoModel.fromJson(Map<String, dynamic> json) =>
       _$FloorInfoModelFromJson(json);
 
