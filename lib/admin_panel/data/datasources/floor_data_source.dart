@@ -27,11 +27,7 @@ class FloorDataSourceImpl implements FloorDataSource {
   @override
   Future<void> delete(buildingId, floorNumber) async {
     await client.delete(
-      ApiConstants.baseUrl +
-          ApiConstants.buildings +
-          buildingId +
-          ApiConstants.floors +
-          floorNumber.toString(),
+      '${ApiConstants.baseUrl}${ApiConstants.buildings}$buildingId/${ApiConstants.floors}$floorNumber',
     );
   }
 

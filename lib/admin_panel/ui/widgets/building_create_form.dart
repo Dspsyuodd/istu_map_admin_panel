@@ -96,7 +96,7 @@ class BuildingCreateForm extends StatelessWidget {
               minLines: 1,
               maxLines: 5,
               decoration: const InputDecoration(
-                labelText: 'Ключевые слова (через пробед без запятых)',
+                labelText: 'Ключевые слова (через пробел без запятых)',
                 border: OutlineInputBorder(),
               ),
             ),

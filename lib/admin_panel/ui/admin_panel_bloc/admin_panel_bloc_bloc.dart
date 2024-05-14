@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:html';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -38,6 +39,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
         await _addFloor(emit, event);
       }
       if (event is DeleteFloor) {
+        emit(Loading());
         var result = await floorUseCases.delete(event.floor);
         result.fold(
           (l) => _emitError(l, emit),

@@ -12,13 +12,15 @@ class FloorUsecases {
   FloorUsecases(this.repository, this.imageRepository);
 
   Future<(Either<Failure, String>, Either<Failure, String>?)> create(
-      Floor object, File image) async {
+      Floor object, File? image) async {
     var result = await repository.create(object);
     Either<Failure, String>? imageRes;
     await result.fold(
       (l) async => null,
       (r) async {
-        imageRes = await imageRepository.addImage(r, image);
+        if (image != null) {
+          imageRes = await imageRepository.addImage(r, image);
+        }
       },
     );
     return (result, imageRes);

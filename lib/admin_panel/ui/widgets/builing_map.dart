@@ -96,7 +96,11 @@ class _BuildingMapState extends State<BuildingMap> {
                                       IconButton(
                                         color: Colors.red,
                                         iconSize: 50,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          BlocProvider.of<AdminPanelBloc>(
+                                                  context)
+                                              .add(DeleteFloor(e));
+                                        },
                                         icon: const Icon(Icons.delete),
                                       ),
                                     ],

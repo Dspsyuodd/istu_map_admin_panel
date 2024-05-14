@@ -26,6 +26,7 @@ class FloorRepositoryImpl extends ExceptionsHandler implements FloorRepository {
 
   @override
   Future<Either<Failure, void>> delete(floor) async {
+    
     return getEither(
         () => dataSource.delete(floor.buildingId, floor.floorNumber));
   }

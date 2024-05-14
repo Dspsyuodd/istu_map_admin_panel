@@ -25,7 +25,7 @@ class GetFloors extends AdminPanelEvent {}
 
 class AddFloor extends AdminPanelEvent {
   final FloorInfo floorInfo;
-  final dynamic image;
+  final File? image;
 
   const AddFloor(this.floorInfo, this.image);
 }
