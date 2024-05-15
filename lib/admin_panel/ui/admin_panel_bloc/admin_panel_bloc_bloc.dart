@@ -209,7 +209,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
         var newBuilding = Building(
           id: r,
           title: event.building.title,
-          floors: const [],
+          floors:  List.empty(growable: true),
           description: event.building.description,
           address: event.building.address,
           latitude: event.building.latitude,
