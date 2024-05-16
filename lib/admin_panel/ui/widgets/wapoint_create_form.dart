@@ -42,6 +42,7 @@ class WaypointCreateForm extends StatelessWidget {
             ),
             const Gap(20),
             DropdownMenu(
+              initialSelection: 0,
               width: 400,
               onSelected: (value) {
                 if (value != null) {
