@@ -37,16 +37,3 @@ class WaypointDataSourceImpl implements WaypointDataSource {
     return WaypointModel.fromJson(jsonDecode(responce.body));
   }
 }
-
-var a = {
-  "Type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
-  "Title": "One or more validation errors occurred.",
-  "Status": 400,
-  "Errors": {
-    "request": ["The request field is required."],
-    "Type": [
-      "The JSON value could not be converted to Istu.Navigation.Domain.Models.BuildingRoutes.BuildingObjectType. Path: Type | LineNumber: 0 | BytePositionInLine: 95."
-    ]
-  },
-  "traceId": "00-bfd526ea008c44c13b0540db5bf2f17f-0554670b083050f8-00",
-};

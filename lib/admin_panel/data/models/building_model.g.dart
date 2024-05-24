@@ -11,7 +11,8 @@ BuildingModel _$BuildingModelFromJson(Map<String, dynamic> json) =>
       id: json['Id'] as String,
       title: json['Title'] as String,
       floors: (json['Floors'] as List<dynamic>)
-          .map((e) => FloorInfoModel.fromJson(e as Map<String, dynamic>) as FloorInfo)
+          .map((e) =>
+              FloorInfoModel.fromJson(e as Map<String, dynamic>) as FloorInfo)
           .toList(),
       description: json['Description'] as String?,
       address: json['Address'] as String,
@@ -26,8 +27,10 @@ Map<String, dynamic> _$BuildingModelToJson(BuildingModel instance) =>
       'Floors': instance.floors,
       'Description': instance.description,
       'Address': instance.address,
-      'Latitude': instance.latitude,
-      'Longitude': instance.longitude,
+      'Position': {
+        'Latitude': instance.latitude,
+        'Longitude': instance.longitude,
+      },
     };
 
 FloorInfoModel _$FloorInfoModelFromJson(Map<String, dynamic> json) =>

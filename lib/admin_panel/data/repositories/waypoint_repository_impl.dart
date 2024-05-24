@@ -19,12 +19,13 @@ class WaypointRepositoryImpl extends ExceptionsHandler
       () => dataSource.create(
         {
           "BuildingId": object.buildingId,
+          "Description": object.description,
           "Floor": object.floor,
           "Type": object.type.index,
           "Title": object.title,
           "X": object.x,
           "Y": object.y,
-          if (object.keywords != null) "Keywords": object.keywords,
+          "Keywords": object.keywords,
         },
       ),
     );
