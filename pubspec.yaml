@@ -21,6 +21,7 @@ dependencies:
   internet_connection_checker_plus: ^2.3.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
+  jwt_decoder: ^2.0.1
   loading_animation_widget: ^1.2.1
   very_good_analysis: ^5.1.0
 

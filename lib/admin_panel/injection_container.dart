@@ -4,6 +4,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'package:istu_map_admin_panel/admin_panel/data/datasources/image_data_source.dart';
 import 'package:istu_map_admin_panel/admin_panel/data/repositories/image_repository.dart';
 import 'package:istu_map_admin_panel/admin_panel/domain/usecases/image_usecases.dart';
+import 'package:istu_map_admin_panel/authorization/authorization_api.dart';
 import 'core/api_client.dart';
 import 'data/datasources/building_data_source.dart';
 import 'data/datasources/edge_data_source.dart';
@@ -46,6 +47,7 @@ Future<void> intiDependencies() async {
   sl.registerLazySingleton<EdgeDataSource>(() => EdgeDataSourceImpl(sl()));
   sl.registerLazySingleton<WaypointDataSource>(() => WaypointDataSourceImpl(sl()));
   sl.registerLazySingleton<ImageDataSource>(() => ImageDataSourceImpl(sl()));
+  sl.registerLazySingleton(() => AuthorizationApi(sl()));
 
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
   sl.registerLazySingleton<ApiClient>(() => ApiClientImpl(sl()));

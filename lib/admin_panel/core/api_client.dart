@@ -17,11 +17,23 @@ class ApiClientImpl implements ApiClient {
   final http.Client client;
 
   ApiClientImpl(this.client);
+  Map<String, String> getCookies() {
+    final cookie = document.cookie!;
+    if (cookie.isEmpty) return {};
+    final entity = cookie.split("; ").map((item) {
+      final split = item.split("=");
+      return MapEntry(split[0], split[1]);
+    });
+    return Map.fromEntries(entity);
+  }
 
   @override
   Future<http.Response> get(String url) async {
     var response = await client.get(
       Uri.parse(url),
+      headers: {
+        "Authorization": getCookies()["AccessToken"] ?? '',
+      },
     );
     _handleErrors(response);
     return response;
@@ -35,6 +47,7 @@ class ApiClientImpl implements ApiClient {
       headers: {
         "content-type": "application/json",
         "accept": "application/json",
+        "Authorization": getCookies()["AccessToken"] ?? '',
       },
     );
     _handleErrors(response);
@@ -43,14 +56,25 @@ class ApiClientImpl implements ApiClient {
 
   @override
   Future<http.Response> delete(String url) async {
-    var response = await client.delete(Uri.parse(url));
+    var response = await client.delete(
+      Uri.parse(url),
+      headers: {
+        "Authorization": getCookies()["AccessToken"] ?? '',
+      },
+    );
     _handleErrors(response);
     return response;
   }
 
   @override
   Future<http.Response> patch(String url, {Object? body}) async {
-    var response = await client.patch(Uri.parse(url), body: body);
+    var response = await client.patch(
+      Uri.parse(url),
+      body: body,
+      headers: {
+        "Authorization": getCookies()["AccessToken"] ?? '',
+      },
+    );
     _handleErrors(response);
     return response;
   }
@@ -79,6 +103,7 @@ class ApiClientImpl implements ApiClient {
       {
         'accept': 'text/plain',
         "Content-Type": "multipart/form-data",
+        "Authorization": getCookies()["AccessToken"] ?? '',
       },
     );
     var type = body.type.split('/');
