@@ -6,7 +6,9 @@ enum BuildingObjectType {
   cafe._("Кафе"),
   ladder._("Лестница"),
   elevator._("Лифт"),
-  entrance._("Вход");
+  entrance._("Вход"),
+  cashRegister._('Касса'),
+  showplace._('Достопримечаетльность');
 
   final String name;
 

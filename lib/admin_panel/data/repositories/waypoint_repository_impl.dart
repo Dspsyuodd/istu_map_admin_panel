@@ -23,8 +23,10 @@ class WaypointRepositoryImpl extends ExceptionsHandler
           "Floor": object.floor,
           "Type": object.type.index,
           "Title": object.title,
-          "X": object.x,
-          "Y": object.y,
+          "Position": {
+            "X": object.x.toString(),
+            "Y": object.y.toString(),
+          }, 
           "Keywords": object.keywords,
         },
       ),

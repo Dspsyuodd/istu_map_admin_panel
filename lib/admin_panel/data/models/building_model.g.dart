@@ -16,8 +16,8 @@ BuildingModel _$BuildingModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       description: json['Description'] as String?,
       address: json['Address'] as String,
-      latitude: (json['Position']['Latitude'] as num).toDouble(),
-      longitude: (json['Position']['Longitude'] as num).toDouble(),
+      latitude: (json['ExternalPosition']['Latitude'] as num).toDouble(),
+      longitude: (json['ExternalPosition']['Longitude'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$BuildingModelToJson(BuildingModel instance) =>

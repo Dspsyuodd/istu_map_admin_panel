@@ -35,7 +35,8 @@ class EdgeRepositoryImpl extends ExceptionsHandler implements EdgeRepository {
 
   @override
   Future<Either<Failure, Edge>> get(String guid) async {
-    return await getEither(() => dataSource.get(guid).then((value) => value as Edge));
+    return await getEither(
+        () => dataSource.get(guid).then((value) => value as Edge));
   }
 
   @override
@@ -56,7 +57,6 @@ class EdgeRepositoryImpl extends ExceptionsHandler implements EdgeRepository {
           skip: skip,
           take: take,
         )
-        .then(
-            (value) => value.map((e) => e as Edge).toList()));
+        .then((value) => value.map((e) => e as Edge).toList()));
   }
 }
