@@ -21,7 +21,7 @@ class BuildingRepositoryImpl extends ExceptionsHandler
           "Title": object.title,
           "Address": object.address,
           if (object.description != null) "Description": object.description!,
-          "Position": {
+          "ExternalPosition": {
             "Latitude": object.latitude.toString(),
             "Longitude": object.longitude.toString(),
           },
